@@ -1,0 +1,69 @@
+{
+    "gemini_api_keys": {
+        "description": "Gemini API 密钥列表",
+        "type": "list",
+        "hint": "可添加多个API密钥，插件会自动轮询以提高成功率。",
+        "obvious_hint": true,
+        "default": []
+    },
+    "api_base_url": {
+        "description": "API 基础地址（不填为gemini默认地址）",
+        "type": "string",
+        "hint": "例如：您的代理地址。留空则使用官方默认地址。",
+        "default": ""
+    },
+    "model_id": {
+        "description": "TTS 模型ID",
+        "type": "string",
+        "hint": "选择语音生成使用的模型。",
+        "options": [
+            "gemini-2.5-flash-preview-tts",
+            "gemini-2.5-pro-preview-tts"
+        ],
+        "default": "gemini-2.5-flash-preview-tts"
+    },
+    "default_voice": {
+        "description": "默认语音音色",
+        "type": "string",
+        "hint": "选择默认使用的语音，已简单标注性别和音色特点。音色解释仅供参考不一定准确，实际效果请自行测试。",
+        "options": [
+            "Aoede (女声 - 轻松自然)",
+            "Kore (女声 - 坚定自信)",
+            "Leda (女声 - 年轻活力)",
+            "Zephyr (女声 - 明亮欢快)",
+            "Autonoe (女声 - 明亮乐观)",
+            "callirrhoe (女声 - 随和放松)",
+            "Despina (女声 - 流畅顺滑/友好信赖)",
+            "Erinome (女声 - 清晰精准)",
+            "Gacrux (女声 - 成熟经验)",
+            "Laomedeia (女声 - 积极活泼/聪慧)",
+            "Sulafat (女声 - 温暖热情/有说服力)",
+            "Vindemiatrix (女声 - 温柔亲切)",
+            "Achernar (女声 - 轻柔温和)",
+            "Puck (男声 - 积极活力)",
+            "Charon (男声 - 信息清晰/自信平易)",
+            "Fenrir (男声 - 激动活力)",
+            "Orus (男声 - 坚定果断)",
+            "Pulcherrima (男声 - 直率表现力/年轻热情)",
+            "Achird (男声 - 友好亲切)",
+            "Algenib (男声 - 沙哑质感)",
+            "Algieba (男声 - 流畅悦耳)",
+            "Alnilam (男声 - 坚定有力)",
+            "Enceladus (男声 - 轻柔气息)",
+            "Iapetus (男声 - 清晰明了)",
+            "Rasalgethi (男声 - 专业/好奇探究)",
+            "Sadachbia (男声 - 活泼生动/自信悠闲)",
+            "Sadaltager (男声 - 博学权威/专业)",
+            "Schedar (男声 - 平稳均衡/友好平易)",
+            "Umbriel (男声 - 随和冷静)",
+            "Zubenelgenubi (男声 - 休闲对话)"
+        ],
+        "default": "Kore (女声 - 坚定自信)"
+    },
+    "dubbing_director_prompt": {
+        "description": "配音总监系统提示词",
+        "type": "text",
+        "hint": "这里是“配音总监”LLM的系统提示词，它决定了如何将LLM的回复转换成带有情感的语音指令。非必要请勿修改，否则可能导致语音生成效果变差或失败。",
+        "default": "你是一位顶级的专业配音总监。你的任务是分析一段包含**对话**和**括号/星号内的动作或情绪描述**的文本，让最终输出的语音更自然、更具角色感。\n\n**核心任务**:\n1.  仔细阅读并理解所有内容，特别是括号/星号内的描述，它们是决定语气、情感和语速的关键。\n2.  **即使没有括号描述**，也要根据对话内容本身，**主动推断**出最合适的角色情绪和语气。\n3.  **【速度要求】** 除非特别指示慢速，否则所有对话都应以**稍快且流畅的自然对话语速**进行，避免AI腔的缓慢停顿。\n4.  **仅提取**出实际需要朗读的对话部分，**必须丢弃**所有括号/星号及其中的描述内容。\n5.  为你提取的对话，生成一条**丰富且具体**的英文TTS指令。指令应包含**情绪、风格、语气、语速**等多个维度。\n6.  你的输出**必须**严格遵循格式：`[英文指令]: [提取出的对话文本]`。\n\n--- \n**你可以使用的风格提示词示例 (请灵活运用和组合)**:\n*   **性格风格**: `tsundere` (傲娇), `energetic` (元气), `lazy` (慵懒), `gentle` (温柔), `yandere` (病娇), `calm` (冷淡).\n*   **情绪描述**: `annoyed` (恼怒的), `surprised` (惊讶的), `shy` (害羞的), `pouting` (撅着嘴的), `happy` (开心的), `sad` (悲伤的).\n*   **语气语速**: `in a high-pitched voice` (高音调), `in a soft whisper` (轻声细语), **`at a brisk pace` (以轻快的语速), `speaking quickly` (快速地说), `fluently` (流利地)**, `with a rising intonation` (用上扬的语调).\n--- \n\n**输出示例**:\n输入: `(声音拔高，难以置信) 减…减半？！你这杂鱼在胡说什么？！`\n输出: `Read this in a high-pitched, panicked, and brisk tsundere voice: 减…减半？！你这杂鱼在胡说什么？！`\n\n输入: `哼，谁要你管了……（小声嘟囔）……笨蛋。`\n输出: `Read this fluently in an annoyed, tsundere tone, muttering the last word softly: 哼，谁要你管了……笨蛋。`\n\n**请只输出最终的完整指令字符串**，不要包含任何额外解释、介绍或Markdown标记。"
+    }
+}
