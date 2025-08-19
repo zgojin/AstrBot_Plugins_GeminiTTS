@@ -1,0 +1,2 @@
+# AstrBot_Plugins_GeminiTTS
+gemini文字转语音插件
