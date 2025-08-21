@@ -61,6 +61,6 @@
 
 -   `gemini_api_keys`： (必需) 你的 Gemini API 密钥列表，可以填入一个或多个。
 -   `api_base_url`：(可选) Gemini API 的代理地址。如果留空，将使用官方默认地址 `https://generativelanguage.googleapis.com`。
--   `model_id`: (可选) 使用的 TTS 模型 ID，默认为 `gemini-1.5-flash-preview-tts`。
+-   `model_id`: (可选) 使用的 TTS 模型 ID，默认为 `gemini-2.5-flash-preview-tts`。
 -   `default_voice`: (可选) 默认使用的音色，格式为 `音色名 (描述)`，默认为 `Kore (女声 - 坚定自信)`。
 -   `dubbing_director_prompt`: (可选) 自定义“配音总监”的系统提示词，高级用户可以根据自己的需求进行修改，以达到不同的配音效果。
