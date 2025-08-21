@@ -33,7 +33,7 @@ class GeminiTTSGenerator(Star):
             if api_base_url_from_config is not None:
                 logger.info("配置中的 api_base_url 为空, 将使用默认官方地址")
 
-        self.model_id = self.config.get("model_id", "gemini-1.5-flash-preview-tts")
+        self.model_id = self.config.get("model_id", "gemini-2.5-flash-preview-tts")
         full_voice_name = self.config.get("default_voice", "Kore (女声 - 坚定自信)")
         self.default_voice = full_voice_name.split(" ")[0]
         default_prompt = (
@@ -307,3 +307,4 @@ class GeminiTTSGenerator(Star):
                 except Exception as e:
                     logger.warning(f"停用插件时清理文件 {file_path} 失败: {e}")
         logger.info("已停用")
+
